@@ -1,5 +1,5 @@
-four51.app.directive('angularPaste', ['$parse', '$rootScope', '$document', 'ExistingAddress', 'Address', 'Resources',
-function ($parse, $rootScope, $document, ExistingAddress, Address, Resources) {
+four51.app.directive('angularPaste', ['$parse', '$rootScope', '$document', 'Address', 'Resources',
+function ($parse, $rootScope, $document, Address, Resources) {
 		return {
 			restrict:'E',
 			templateUrl:'partials/controls/angularPaste.html',
@@ -82,8 +82,8 @@ function ($parse, $rootScope, $document, ExistingAddress, Address, Resources) {
 											}
 										}
 
-										if (a.ShipToFirstName == "" ||
-                                            a.ShipToLastName == "" ||
+										if (a.FirstName == "" ||
+                                            a.LastName == "" ||
                                             a.Street1 == "" ||
                                             a.City == "" ||
                                             a.State == "" ||
@@ -120,9 +120,9 @@ function ($parse, $rootScope, $document, ExistingAddress, Address, Resources) {
 
 				//Directive was not firing on first attempt after login, or after clearing cache
 				//Broadcasting from MainGCPurchaseCtrl
-				$rootScope.$on('event:recipientspasted', textChanged);
+				$rootScope.$on('event:addressespasted', textChanged);
 
-				$rootScope.$on('event:generaterecipients', uploadList);
+				$rootScope.$on('event:generateaddresses', uploadList);
 
 				function textChanged() {
 					$scope.tempRecipientPasteList = [];

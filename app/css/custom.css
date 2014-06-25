@@ -4,3 +4,38 @@ Theme name: My SPA Theme
 Version: 1.0
 Template: Howdy
 */
+
+#myPasteBox {
+    min-height: 50px;
+}
+.paste-box-validation {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -10px;
+    right: -10px;
+    border-radius: 4px;
+    margin: 0 15px;
+}
+.paste-box-validation.pbinvalid {
+    background-color: #be0f34;
+    border-color: #770921;
+}
+.paste-box-validation.pbvalid {
+    background-color: #8cc63e;
+    border-color: #638e2a;
+}
+.paste-box-validation .paste-message {
+    font-weight: bold;
+    color: #fff;
+    padding-top: 15px;
+    float: left;
+    padding-left: 15px;
+}
+.paste-box-validation i {
+    cursor: pointer;
+    color: #fff;
+    padding-right: 15px;
+    padding-top: 10px;
+    z-index: 50;
+}

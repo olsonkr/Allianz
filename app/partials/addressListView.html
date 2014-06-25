@@ -73,45 +73,53 @@
             <h3 class="panel-title">{{'Address' | r}} {{'Upload' | r}}</h3>
         </div>
         <div class="panel-table">
-            <angular-paste ng-hide="addressPasteList.length > 0" ng-model="rawPaste" ng-array="parsedPaste"></angular-paste>
-
-            <div class="text-info" ng-show="tempAddressPasteList.length > 0 && tempPasteError">
-                <strong>The following errors were detected:</strong>
-                <ul>
-                    <li ng-repeat="a in tempAddressPasteList | filter:{Invalid:true}">{{a.ErrorMessage}}</li>
-                </ul>
+            <div class="row">
+                <div class="btn btn-success pull-right" style="margin-right: 10px;" ng-show="addressPasteList" ng-click="generateAddresses(addressPasteList); tempAddressPasteList = []">
+                    <i class="fa fa-plus-circle"></i> Generate Addresses
+                </div>
+                <span><a class="btn btn-link" href="lib/AddressUploadTemplate.xlsx" target="_blank"><i class="fa fa-download"></i> Download Spreadsheet Template</a></span>
             </div>
-            <div class="recipient-upload-table">
-                <div class="row" ng-hide="addressPasteList.length == 0 || !addressPasteList">
-                    <div class="col-xs-12">
-                        <div class="row">
-                            <div class="col-md-2 col-xs-6"><b>Address Name</b></div>
-                            <div class="col-md-1 col-xs-12"><b>First Name</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Last Name</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Company Name</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Address Line 1</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Address Line 2</b></div>
-                            <div class="col-md-1 col-xs-12"><b>City</b></div>
-                            <div class="col-md-1 col-xs-12"><b>State</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Zip</b></div>
-                            <div class="col-md-1 col-xs-12"><b>Phone</b></div>
+            <div class="row">
+                <angular-paste ng-hide="addressPasteList.length > 0" ng-model="rawPaste" ng-array="parsedPaste"></angular-paste>
+
+                <div class="text-info" ng-show="tempAddressPasteList.length > 0 && tempPasteError">
+                    <strong>The following errors were detected:</strong>
+                    <ul>
+                        <li ng-repeat="a in tempAddressPasteList | filter:{Invalid:true}">{{a.ErrorMessage}}</li>
+                    </ul>
+                </div>
+                <div class="recipient-upload-table">
+                    <div class="row" ng-hide="addressPasteList.length == 0 || !addressPasteList">
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-6"><b>Address Name</b></div>
+                                <div class="col-md-1 col-xs-12"><b>First Name</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Last Name</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Company Name</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Address Line 1</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Address Line 2</b></div>
+                                <div class="col-md-1 col-xs-12"><b>City</b></div>
+                                <div class="col-md-1 col-xs-12"><b>State</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Zip</b></div>
+                                <div class="col-md-1 col-xs-12"><b>Phone</b></div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="recipient-paste-row" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="address in addressPasteList">
-                    <div class="row">
-                        <div class="col-md-2 col-xs-6"><b>{{address.AddressName}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.FirstName}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.LastName}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.CompanyName}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.Street1}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.Street2}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.City}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.State}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.Zip}}</b></div>
-                        <div class="col-md-1 col-xs-12"><b>{{address.Phone}}</b></div>
-                </div>
+                    <div class="recipient-paste-row" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="address in addressPasteList">
+                        <div class="row">
+                            <div class="col-md-2 col-xs-6"><b>{{address.AddressName}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.FirstName}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.LastName}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.CompanyName}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.Street1}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.Street2}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.City}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.State}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.Zip}}</b></div>
+                            <div class="col-md-1 col-xs-12"><b>{{address.Phone}}</b></div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
