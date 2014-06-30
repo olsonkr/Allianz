@@ -1,6 +1,7 @@
 four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', '$location', '$451', 'Product', 'ProductDisplayService', 'Order', 'Variant', 'User',
     function ($scope, $routeParams, $route, $location, $451, Product, ProductDisplayService, Order, Variant, User) {
         $scope.selected = 1;
+        $scope.qtyError = null;
         $scope.LineItem = {};
         $scope.addToOrderText = "Add To Cart";
         $scope.loadingIndicator = true;
@@ -12,12 +13,6 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
             pageSize: 10
         };
 
-        $scope.calcVariantLineItems = function(i){
-            $scope.variantLineItemsOrderTotal = 0;
-            angular.forEach($scope.variantLineItems, function(item){
-                $scope.variantLineItemsOrderTotal += item.LineTotal || 0;
-            })
-        };
         function init(searchTerm) {
             ProductDisplayService.getProductAndVariant($routeParams.productInteropID, $routeParams.variantInteropID, function (data) {
                 $scope.product= data.product;
@@ -55,10 +50,11 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
 
             $scope.comboVariants = {};
             for (var option in specCombos) {
-                $scope.comboVariants [option] = [];
+                $scope.comboVariants[option] = [];
                 angular.forEach(specCombos[option], function(combo) {
                     getVariantData(product, combo, option, combo.Specs);
                 });
+                console.log();
             }
 
             function countVariantInOrder(variant) {
@@ -71,29 +67,45 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
                 return count;
             }
 
-            function getVariantData(p, params, color, specs) {
+            function getVariantData(p, params, group, specs) {
                 Variant.get({'ProductInteropID': p.InteropID, 'SpecOptionIDs': params}, function(variant){
-                    variant.DisplayName = color;
+                    variant.DisplayName = [];
                     variant.Markup = params.Markup;
+                    variant.tempSpecs = {};
                     angular.forEach($scope.product.Specs, function(spec) {
                         angular.forEach(spec.Options, function(option) {
                             if (option.ID == params[0]) {
-                                variant.Specs[spec.Name] = spec;
-                                variant.Specs[spec.Name].Value = option.Value;
+                                variant.tempSpecs[spec.Name] = {};
+                                variant.tempSpecs[spec.Name].Value = option.Value;
+                                variant.DisplayName[0] = option.Value;
                             }
                             if (option.ID == params[1]) {
-                                variant.Specs[spec.Name] = spec
-                                variant.Specs[spec.Name].Value = option.Value;
+                                variant.tempSpecs[spec.Name] = {};
+                                variant.tempSpecs[spec.Name].Value = option.Value;
+                                variant.DisplayName[1] = option.Value;
                             }
                         });
                     });
                     variant.OrderQuantity = $scope.currentOrder ? countVariantInOrder(variant) : 0;
-                    $scope.comboVariants[color].DisplayName = color;
-                    $scope.comboVariants[color].push(variant);
+                    $scope.comboVariants[group].DisplayName = group;
+                    $scope.comboVariants[group].push(variant);
                 });
             }
         }
 
+        $scope.qtyChanged = function() {
+            $scope.qtyError = "";
+            angular.forEach($scope.comboVariants, function(group) {
+                angular.forEach(group, function(variant) {
+                    if (variant.Quantity) {
+                        if(!$451.isPositiveInteger(variant.Quantity))
+                        {
+                            $scope.qtyError += "<p>Please select a valid quantity for " + variant.DisplayName[0] + " " + variant.DisplayName[1] + "</p>";
+                        }
+                    }
+                });
+            });
+        }
 
         $scope.addVariantsToOrder = function(){
             if(!$scope.currentOrder){
@@ -103,11 +115,16 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
             angular.forEach($scope.comboVariants, function(group) {
                 angular.forEach(group, function(item) {
                     if (item.Quantity > 0) {
+                        var liSpecs = {};
+                        for (var spec in $scope.product.Specs) {
+                            liSpecs[spec] = angular.copy($scope.product.Specs[spec]);
+                            liSpecs[spec].Value = item.tempSpecs[spec].Value;
+                        }
                         var li = {
                             "PriceSchedule":$scope.product.StandardPriceSchedule,
                             "Product":$scope.product,
                             "Quantity":item.Quantity,
-                            "Specs":item.Specs,
+                            "Specs":liSpecs,
                             "Variant":item,
                             "qtyError":null
                         }
