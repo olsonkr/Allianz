@@ -54,7 +54,6 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
                 angular.forEach(specCombos[option], function(combo) {
                     getVariantData(product, combo, option, combo.Specs);
                 });
-                console.log();
             }
 
             function countVariantInOrder(variant) {
@@ -95,13 +94,25 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
 
         $scope.qtyChanged = function() {
             $scope.qtyError = "";
+            var priceSchedule = $scope.product.StandardPriceSchedule;
             angular.forEach($scope.comboVariants, function(group) {
                 angular.forEach(group, function(variant) {
+                    var qty = variant.Quantity;
                     if (variant.Quantity) {
-                        if(!$451.isPositiveInteger(variant.Quantity))
+                        if(!$451.isPositiveInteger(qty))
                         {
                             $scope.qtyError += "<p>Please select a valid quantity for " + variant.DisplayName[0] + " " + variant.DisplayName[1] + "</p>";
                         }
+                    }
+                    if(priceSchedule.MinQuantity > qty && qty != 0){
+                        $scope.qtyError += "<p>Quantity must be equal or greater than " + priceSchedule.MinQuantity + " for " + variant.DisplayName[0] + " " + variant.DisplayName[1] + "</p>";
+                    }
+                    if(priceSchedule.MaxQuantity && priceSchedule.MaxQuantity < qty){
+                        $scope.qtyError += "<p>Quantity must be equal or less than " + priceSchedule.MaxQuantity + " for " + variant.DisplayName[0] + " " + variant.DisplayName[1] + "</p>";
+                    }
+                    var qtyAvail = variant.QuantityAvailable;
+                    if(qtyAvail < qty && $scope.product.AllowExceedInventory == false){
+                        $scope.qtyError = "<p>Quantity cannot exceed the Quantity Available of " +  qtyAvail + " for " + variant.DisplayName[0] + " " + variant.DisplayName[1] + "</p>";;
                     }
                 });
             });
