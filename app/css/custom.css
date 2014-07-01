@@ -39,3 +39,205 @@ Template: Howdy
     padding-top: 10px;
     z-index: 50;
 }
+
+/**************************/
+.container .navbar-nav li.active a:hover  {background-color: #005592;}
+.container .navbar-nav li.active a:focus  {background-color: #005592;}
+.navbar-default .navbar-nav .open > a  {background-color: #005592;}
+.navbar-default .navbar-nav .open > a:hover  {background-color: #005592;}
+.navbar-default .navbar-nav .open > a:focus  {background-color: #005592;}
+.navbar-nav li.dropdown li > a:hover  {background-color: #005592;}
+.navbar-nav li.dropdown li > a:focus  {background-color: #005592;}
+.navbar .container .navbar-nav li.active .fa-caret-down  {color: #005592;}
+.navbar-nav li.dropdown li > a  {color: #333333;}
+.navbar-nav li.dropdown li > a:hover  {color: #FFFFFF;}
+.navbar .container .navbar-nav.pull-right li a i:first-of-type  {border-color: #FFFFFF;}
+.badge  {background-color: #cccccc;}
+.badge  {color: #000000;}
+.navbar-default  {background-color: #006BB7;}
+.container .navbar-nav li a  {color: #FFFFFF;}
+.container .navbar-nav li.active > a  {background-color: #005592;}
+.container .navbar-nav li.active > a  {color: undefined;}
+.navbar-default, .dropdown-mega  {border-color: #FFFFFF;}
+body  {background-color: #F0F0F0;}
+body  {color: #333333;}
+.text-primary  {color: #0C2A3A;}
+.text-info  {color: #31708F;}
+body a  {color: #0C2A3A;}
+.btn-primary  {background-color: #0C2A3A;}
+.btn-primary, .btn-primary:hover  {color: #FFFFFF;}
+.btn-primary  {border-color: #081B24;}
+.btn-primary:hover  {background-color: #051118;}
+.btn-default  {background-color: #FFFFFF;}
+.btn-default, .btn-default:hover  {color: #333333;}
+.btn-default  {border-color: #CCCCCC;}
+.btn-default:hover  {background-color: #EBEBEB;}
+.btn-info  {background-color: #5BC0DE;}
+.btn-info, .btn-info:hover  {color: #FFFFFF;}
+.btn-info  {border-color: #46B8DA;}
+.btn-info:hover  {background-color: #39B3D7;}
+.btn-success  {background-color: #5CB85C;}
+.btn-success, .btn-success:hover  {color: #FFFFFF;}
+.btn-success  {border-color: #4CAE4C;}
+.btn-success:hover  {background-color: #47A447;}
+.btn-warning  {background-color: #f0ad4e;}
+.btn-warning, .btn-warning:hover  {color: #FFFFFF;}
+.btn-warning  {border-color: #EEA236;}
+.btn-warning:hover  {background-color: #ED9C28;}
+.btn-danger  {background-color: #D9534F;}
+.btn-danger, .btn-danger:hover  {color: #FFFFFF;}
+.btn-danger  {border-color: #D43F3A;}
+.btn-danger:hover  {background-color: #D2322D;}
+.jumbotron  {background-color: #FFFFFF;}
+h2 .jumbotron  {color: #333333;}
+.panel-primary .panel-heading .panel-title  {background-color: #006BB7;}
+.panel-primary .panel-heading .panel-title  {color: #FFFFFF;}
+.panel-default .panel-heading .panel-title  {background-color: #F5F5F5;}
+.panel-default .panel-heading .panel-title  {color: #333333;}
+.panel  {background-color: #FFFFFF;}
+.panel-footer  {background-color: #F5F5F5;}
+.panel-category-list .well  {background-color: #FFFFFF;}
+.panel-category-list .well h5  {color: #333333;}
+.panel-category-list .well  {border-color: #F0F0F0;}
+.panel-product-list .well  {background-color: #FFFFFF;}
+.panel-product-list .well  {color: #333333;}
+.panel-product-list .well  {border-color: #F0F0F0;}
+
+
+/*************************/
+.navbar .container .navbar-nav.pull-left li.fadeInLeft a i, .navbar .container-view .navbar-nav.pull-left li.fadeInLeft a i {
+    color: #ffffff;
+}
+
+.navbar .container .navbar-nav.pull-right li.social a i:first-of-type {
+    border-radius:0;
+    border-color: transparent;
+    padding: 0;
+    margin-top:-5px;
+}
+
+.jumbotron {
+    height:360px;
+}
+
+h2.thumbnail a  {
+    text-decoration:none;
+}
+
+h2.thumbnail img {
+    border:2px solid #ccc;
+}
+
+.tagline {
+    font-size:18px;
+    margin-top:-16px;
+    background-color:#ccc;
+    color:#006BB7;
+}
+
+/* variables */
+/* general */
+.rn-carousel-container {
+    overflow: hidden;
+    position: relative; }
+
+.rn-carousel-slides {
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    position: relative;
+    white-space: nowrap;
+    overflow: visible;
+    padding: 0;
+    margin: 0; }
+
+/* IE 9 */
+:root .rn-carousel-slides {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+    position: relative;
+    white-space: nowrap;
+    overflow: visible;
+    padding: 0;
+    margin: 0; }
+
+.rn-carousel-slide {
+    white-space: normal;
+    vertical-align: top;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden; }
+
+/* indicators */
+.rn-carousel-indicator {
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    background-color: #ccc;
+    position: relative;
+    bottom: 0;
+    cursor: pointer; }
+
+.rn-carousel-indicator span {
+    -webkit-transition: color .2s ease-out;
+    transition: color .2s ease-out;
+    padding: 0 5px;
+    color: #333;
+}
+
+.rn-carousel-indicator span:before {
+    content: "\25cf"; }
+.rn-carousel-indicator .active {
+    color: white; }
+
+/* controls */
+.rn-carousel-control {
+    -webkit-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    margin-top: -35px;
+    opacity: 0.75;
+    cursor: pointer; }
+
+.rn-carousel-control:hover {
+    opacity: 1; }
+
+.rn-carousel-control.rn-carousel-control-prev {
+    left: 0.5em; }
+
+.rn-carousel-control.rn-carousel-control-prev:before {
+    content: "<"; }
+
+.rn-carousel-control.rn-carousel-control-next {
+    right: 0.5em; }
+
+.rn-carousel-control.rn-carousel-control-next:before {
+    content: ">"; }
+
+.rn-carousel-slide > li {
+    height:300px;
+    width:100%;
+    max-width:1600px;
+    margin:0 auto;
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
+}
+
+@media (max-width: 768px) {
+    .rn-carousel-slide > li {
+        height:auto;
+        max-width:100%;
+    }
+
+    .rn-carousel-slide > li img {
+        height:auto;
+        max-width:100%;
+    }
+}

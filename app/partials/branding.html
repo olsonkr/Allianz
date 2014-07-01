@@ -1,11 +1,25 @@
 <section class="jumbotron" ng-class="{'active': isActive('catalog')}" ng-show="user.Company.LogoUrl">
-    <div class="container">
-        <h2 class="thumbnail" ng-show="Four51User.isAuthenticated()">
-            <a ng-click="refreshUser()" href="catalog">
-                <img ng-src="{{user.Company.LogoUrl}}" />
-            </a>
-            <span>{{user.Company.Name}}</span>
-            <homemessage />
-        </h2>
-    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+                <h2 class="thumbnail" ng-show="Four51User.isAuthenticated()">
+                    <a ng-click="refreshUser()" href="catalog">
+                        <img ng-src="{{user.Company.LogoUrl}}" />
+                        <div class="tagline text-center">For all that's ahead.&reg;</div>
+                    </a>
+                    <homemessage />
+                </h2>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" id="carousel-wrapper">
+                <!--carousel-->
+                <ul rn-carousel class="image" rn-carousel-indicator="true" rn-carousel-swipe="false">
+                    <li ng-repeat="slide in slides">
+                        <img src="{{slide.image}}" />
+                        <!--<div style="background-image:url({{slide.image}});">
+                        </div>-->
+                    </li>
+                </ul>
+            </div><!--cols-->
+        </div><!--container-->
+    </div><!--row-->
 </section>

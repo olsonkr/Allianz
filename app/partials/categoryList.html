@@ -16,10 +16,12 @@
                     <div class="well">
                         <a ng-href="catalog/{{c.InteropID}}">
                             <figure ng-show="c.Image.URL">
-                                <img class="img-responsive" ng-src="{{c.Image.URL}}"/>
+                                <!--<img class="img-responsive" ng-src="{{c.Image.URL}}"/>-->
+                                <img class="img-responsive" ng-src="http://placehold.it/250/006BB7/FFFFFF"/>
                             </figure>
                             <div class="empty" ng-show="!c.Image.URL">
-                                <span class="fa empty"><i class="fa fa-camera"></i></span>
+                                <!--<span class="fa empty"><i class="fa fa-camera"></i></span>-->
+                                <img class="img-responsive" ng-src="http://placehold.it/250/CCCCCC/FFFFFF"/>
                             </div>
                             <h5 ng-bind-html="c.Name" />
                         </a>

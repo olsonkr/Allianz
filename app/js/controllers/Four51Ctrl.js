@@ -43,6 +43,15 @@ function ($scope, $route, $location, $451, User, Order, Security, OrderConfig, C
 				$scope.tree = data;
 				$scope.$broadcast("treeComplete", data);
 	        });
+
+            $scope.slides = [
+                {image:'http://lorempixel.com/q/1600/300/nature/1'},
+                {image:'http://lorempixel.com/q/1600/300/nature/2'},
+                {image:'http://lorempixel.com/q/1600/300/nature/3'},
+                {image:'http://lorempixel.com/q/1600/300/nature/4'}
+            ];
+
+
         }
     }
 
