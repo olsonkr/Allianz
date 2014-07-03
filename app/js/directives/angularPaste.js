@@ -119,7 +119,6 @@ function ($parse, $rootScope, $document, Address, Resources) {
 				});
 
 				//Directive was not firing on first attempt after login, or after clearing cache
-				//Broadcasting from MainGCPurchaseCtrl
 				$rootScope.$on('event:addressespasted', textChanged);
 
 				$rootScope.$on('event:generateaddresses', uploadList);
@@ -174,6 +173,10 @@ function ($parse, $rootScope, $document, Address, Resources) {
 
                                         var errorCnt = 0;
                                         var errors = [];
+                                        if (a.AddressName == "") {
+                                            errorCnt++;
+                                            errors.push("Rep ID");
+                                        }
                                         if (a.FirstName == "") {
                                             errorCnt++;
                                             errors.push("First Name");

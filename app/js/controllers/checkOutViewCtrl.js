@@ -38,15 +38,6 @@ function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, 
         Order.submit($scope.currentOrder,
 	        function(data) {
 				$scope.user.CurrentOrderID = null;
-                angular.forEach($scope.user.CustomFields, function(field) {
-                    if (field.Name == 'Rep ID') {
-                        angular.forEach(data.OrderFields, function(f) {
-                            if (f.Name == 'Rep ID') {
-                                field.Value = f.Value;
-                            }
-                        });
-                    }
-                });
 				User.save($scope.user, function(data) {
 			        $scope.user = data;
 	                $scope.displayLoadingIndicator = false;
