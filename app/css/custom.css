@@ -5,6 +5,43 @@ Version: 1.0
 Template: Howdy
 */
 
+/***************/
+
+.giftOption span {
+    padding:0 20px 0 0;
+}
+
+.giftOption h3 {
+    font-size: 24px;
+    margin: 0;
+    padding: 5px 0 0 0;
+}
+
+.giftOption img {
+    padding:0;
+    margin:0;
+}
+
+.order-cloud-image {
+    /*background-color: #6599ff;*/
+    background:url('http://www.digitalisis.com/sky.jpg'); /*public domain use - source: http://wallpaper-download.net/random-wallpapers/cloudy-blue-sky-wallpaper */
+    background-repeat:repeat;
+}
+
+body {
+    background-color:#fff;
+}
+
+.fa-bars {
+    color:#005592;
+}
+
+#login_form label {
+    color:#FFFFFF;
+}
+
+/***************/
+
 #myPasteBox {
     min-height: 50px;
 }
@@ -59,7 +96,6 @@ Template: Howdy
 .container .navbar-nav li.active > a  {background-color: #005592;}
 .container .navbar-nav li.active > a  {color: undefined;}
 .navbar-default, .dropdown-mega  {border-color: #FFFFFF;}
-body  {background-color: #F0F0F0;}
 body  {color: #333333;}
 .text-primary  {color: #0C2A3A;}
 .text-info  {color: #31708F;}
@@ -177,7 +213,7 @@ h2.thumbnail img {
     width: 100%;
     text-align: center;
     height: 20px;
-    background-color: #ccc;
+    background-color:#006bb7;
     position: relative;
     bottom: 0;
     cursor: pointer; }
@@ -186,7 +222,7 @@ h2.thumbnail img {
     -webkit-transition: color .2s ease-out;
     transition: color .2s ease-out;
     padding: 0 5px;
-    color: #333;
+    color: #ccc;
 }
 
 .rn-carousel-indicator span:before {
@@ -230,14 +266,46 @@ h2.thumbnail img {
     background-position:center;
 }
 
-@media (max-width: 768px) {
-    .rn-carousel-slide > li {
-        height:auto;
-        max-width:100%;
+.rn-carousel-slide > img {
+    max-width:100%;
+    height:auto;
+}
+
+@media (max-width: 680px) {
+
+    #carousel-wrapper {
+        padding-bottom: 40px;
+    }
+}
+
+.jumbotron {
+    height:auto;
+}
+
+}
+
+@media (max-width: 480px) {
+
+    #carousel-wrapper {
+        display:none;
     }
 
-    .rn-carousel-slide > li img {
+    .jumbotron {
         height:auto;
-        max-width:100%;
     }
+
+}
+
+@media (max-width: 320px) {
+
+    .giftOption span {
+        padding:0 5px 0 0;
+    }
+
+    .giftOption h3 {
+        font-size: 18px;
+        margin: 0;
+        padding: 5px 0 0 0;
+    }
+
 }

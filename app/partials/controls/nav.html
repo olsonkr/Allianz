@@ -94,6 +94,9 @@
                         </a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li class="spending-account">{{(SpendingAccounts[0].Balance | currency) || (0 | currency)}}</li>
+                </ul>
             </div>
         </section>
     </nav>
