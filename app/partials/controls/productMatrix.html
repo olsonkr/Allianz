@@ -7,7 +7,7 @@
                 <b>{{item.DisplayName[1]}}</b>
             </div>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-2" ng-show="item.DisplayInventory">
             <div>{{'Quantity Available' | r}}</div>
             <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
                 {{item.QuantityAvailable}}
@@ -44,7 +44,7 @@
                 <b>{{group.DisplayName}}</b>
             </div>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-2" ng-show="group.DisplayInventory">
             <div>{{'Quantity Available' | r}}</div>
             <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
                 {{group.QuantityAvailable}}
