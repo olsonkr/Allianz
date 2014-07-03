@@ -23,9 +23,8 @@ Template: Howdy
 }
 
 .order-cloud-image {
-    /*background-color: #6599ff;*/
-    background:url('http://www.digitalisis.com/sky.jpg'); /*public domain use - source: http://wallpaper-download.net/random-wallpapers/cloudy-blue-sky-wallpaper */
-    background-repeat:repeat;
+    background-color: #3b5997;
+    /*background:url("css/images/sky.jpg") no-repeat fixed center center;  /*public domain use - source: http://wallpaper-download.net/random-wallpapers/cloudy-blue-sky-wallpaper */
 }
 
 body {
