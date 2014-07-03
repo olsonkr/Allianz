@@ -40,6 +40,18 @@ body {
     color:#FFFFFF;
 }
 
+li.spending-account {
+    color: #FFFFFF;
+    padding:10px 10px;
+    border-width:0 1px;
+    border-style: dotted;
+    border-color:#FFFFFF;
+}
+
+li.spending-account span {
+    font-weight: bold;
+}
+
 /***************/
 
 #myPasteBox {
