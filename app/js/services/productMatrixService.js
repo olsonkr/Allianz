@@ -100,6 +100,7 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                 variantCount++;
                 if (defineVariantSpecCount == 1) {
                     comboVariants[group].QuantityAvailable = variant.QuantityAvailable;
+                    comboVariants[group].Markup = variant.Markup;
                     comboVariants[group].OrderQuantity = variant.OrderQuantity;
                     comboVariants[group].ListOrder = variant.ListOrder;
                 }
