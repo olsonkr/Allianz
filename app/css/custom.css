@@ -23,8 +23,7 @@ Template: Howdy
 }
 
 .order-cloud-image {
-    background-color: #3b5997;
-    /*background:url("css/images/sky.jpg") no-repeat fixed center center;  /*public domain use - source: http://wallpaper-download.net/random-wallpapers/cloudy-blue-sky-wallpaper */
+    background:url("css/images/Bluesky.jpg") no-repeat fixed center center;
 }
 
 body {
@@ -49,6 +48,11 @@ li.spending-account {
 
 li.spending-account span {
     font-weight: bold;
+}
+
+img {
+    max-width:100%;
+    height:auto;
 }
 
 /***************/
@@ -163,10 +167,6 @@ h2 .jumbotron  {color: #333333;}
     margin-top:-5px;
 }
 
-.jumbotron {
-    height:360px;
-}
-
 h2.thumbnail a  {
     text-decoration:none;
 }
@@ -277,9 +277,9 @@ h2.thumbnail img {
     background-position:center;
 }
 
-.rn-carousel-slide > img {
-    max-width:100%;
-    height:auto;
+.rn-carousel-slide li > img {
+    width:100%;
+    height:100%;
 }
 
 @media (max-width: 680px) {
@@ -287,11 +287,10 @@ h2.thumbnail img {
     #carousel-wrapper {
         padding-bottom: 40px;
     }
-}
 
-.jumbotron {
-    height:auto;
-}
+    .jumbotron {
+        height:auto;
+    }
 
 }
 
@@ -299,10 +298,6 @@ h2.thumbnail img {
 
     #carousel-wrapper {
         display:none;
-    }
-
-    .jumbotron {
-        height:auto;
     }
 
 }
