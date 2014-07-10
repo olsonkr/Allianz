@@ -42,6 +42,7 @@ function ($scope, $location, $451, AddressList, Address) {
         for (var i = 0; i < list.length; i++) {
             var address = list[i];
             address.IsShipping = true;
+            address.IsCustEditable = true;
 
             if (!address.Invalid) {
                 addresses.push(address);

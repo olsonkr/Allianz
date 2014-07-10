@@ -124,7 +124,7 @@ function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, 
         FavoriteOrder.save($scope.currentOrder);
     };
 
-    angular.forEach($scope.currentOrder.OrderFields, function(field) {
+    /*angular.forEach($scope.currentOrder.OrderFields, function(field) {
         if (field.Name == 'Rep ID' && !field.Value) {
             angular.forEach($scope.user.CustomFields, function(f) {
                 if (f.Name == 'Rep ID') {
@@ -132,5 +132,5 @@ function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, 
                 }
             });
         }
-    });
+    });*/
 }]);
