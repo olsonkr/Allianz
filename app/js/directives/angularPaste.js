@@ -175,7 +175,7 @@ function ($parse, $rootScope, $document, Address, Resources) {
                                         var errors = [];
                                         if (a.AddressName == "") {
                                             errorCnt++;
-                                            errors.push("Rep ID");
+                                            errors.push("Address Name");
                                         }
                                         if (a.FirstName == "") {
                                             errorCnt++;
