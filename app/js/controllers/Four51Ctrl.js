@@ -21,13 +21,6 @@ four51.app.controller('Four51Ctrl', ['$scope', '$route', '$location', '$451', 'U
                 });
         }
 
-        /*if ($scope.SpendingAccounts.length == 1) {
-            $scope.SpendingAccountBalance = 'true';
-         }
-        else {
-            $scope.SpendingActive = false;
-        }*/
-
         function init() {
             if (Security.isAuthenticated()) {
                 User.get(function(user) {
@@ -56,15 +49,6 @@ four51.app.controller('Four51Ctrl', ['$scope', '$route', '$location', '$451', 'U
                     $scope.tree = data;
                     $scope.$broadcast("treeComplete", data);
                 });
-
-                // home page slider images
-                $scope.slides = [
-                    {image:'css/images/banner-2000w.jpg'}
-                    /*{image:'http://placehold.it/2000x300/005592/ffffff'},
-                    {image:'http://placehold.it/2000x300/CCCCCC/ffffff'},
-                    {image:'http://placehold.it/2000x300/005592/ffffff'}*/
-                ];
-
 
             }
         }

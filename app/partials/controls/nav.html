@@ -79,6 +79,12 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="products" ng-class="{'active': isInPath('sizechart')}">
+                        <a ng-show="Four51User.isAuthenticated()" href="sizechart">
+                            <i class="fa fa-photo"></i>
+                            <span class="hidden-xs">{{'Size Chart' | rc}}</span>
+                        </a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li class="social hidden-xs hidden-sm"><a href="//facebook.com" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a></li>
