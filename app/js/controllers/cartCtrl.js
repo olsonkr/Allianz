@@ -57,22 +57,27 @@ four51.app.controller('CartViewCtrl', ['$scope', '$location', '$451', 'Order', '
 			}
 		};
 
-		$scope.removeItem = function(item) {
-			if (confirm('Are you sure you wish to remove this item from your cart?') == true) {
-				Order.deletelineitem($scope.currentOrder.ID, item.ID,
-					function(order) {
-						if (!order) $location.path('/catalog');
-						$scope.currentOrder = order;
-						$scope.displayLoadingIndicator = false;
-						$scope.actionMessage = 'Your Changes Have Been Saved!';
-					},
-					function (ex) {
-						$scope.errorMessage = ex.Message;
-						$scope.displayLoadingIndicator = false;
-					}
-				);
-			}
-		}
+        $scope.removeItem = function(item) {
+            if (confirm('Are you sure you wish to remove this item from your cart?') == true) {
+                Order.deletelineitem($scope.currentOrder.ID, item.ID,
+                    function(order) {
+                        $scope.currentOrder = order;
+                        if (!order) {
+                            $scope.user.CurrentOrderID = null;
+                            User.save($scope.user, function(){
+                                $location.path('catalog');
+                            });
+                        }
+                        $scope.displayLoadingIndicator = false;
+                        $scope.actionMessage = 'Your Changes Have Been Saved!';
+                    },
+                    function (ex) {
+                        $scope.errorMessage = ex.Message;
+                        $scope.displayLoadingIndicator = false;
+                    }
+                );
+            }
+        }
 
 		$scope.checkOut = function() {
 			$scope.displayLoadingIndicator = true;
