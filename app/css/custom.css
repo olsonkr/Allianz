@@ -26,6 +26,18 @@ Template: Howdy
     background:url("images/Bluesky.jpg") no-repeat fixed center center;
 }
 
+.jumbotron{
+    background-image:url('images/jumbotron.jpg');
+ background-size:cover;
+}
+
+.navbar .container .navbar-nav.pull-right li.welcome  {
+    color:#FFFFFF;
+    font-weight:bold;
+    font-size:16px;
+    padding: 20px 10px;
+}
+
 body {
     background-color:#fff;
 }
