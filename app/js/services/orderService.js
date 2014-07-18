@@ -15,6 +15,9 @@ four51.app.factory('Order', ['$resource', '$rootScope', '$451', 'Security', 'Err
 					spec.File.Url += "&auth=" + Security.auth();
 			});
 			item.SpecsLength = Object.keys(item.Specs).length;
+
+            item.ShipAddressID = item.ShipAddressID ? item.ShipAddressID : order.LineItems[0].ShipAddressID;
+            item.ShipperID = item.ShipperID ? item.ShipperID : order.LineItems[0].ShipperID;
 		});
 
 		order.forceMultipleShip = function(value) {
