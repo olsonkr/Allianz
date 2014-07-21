@@ -26,11 +26,6 @@ four51.app.directive('paymentselector', function() {
 		       if ($scope.currentOrder.BudgetAccountID || count > 1) return;
 		       angular.forEach($scope.SpendingAccounts, function(a) {
 			       if (a.AccountType.PurchaseCredit) {
-                       angular.forEach($scope.user.Groups, function(group) {
-                            if (group.Name == 'RC') {
-                                a.Balance = (a.Balance < 0) ? (a.Balance * -1) : a.Balance; //PW-12309
-                            }
-                       });
 				       $scope.currentOrder.BudgetAccountID = a.ID;
 				       $scope.selectedBudgetAccount = a;
 			       }
