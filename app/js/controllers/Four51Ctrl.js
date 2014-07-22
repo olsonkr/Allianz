@@ -39,6 +39,7 @@ four51.app.controller('Four51Ctrl', ['$scope', '$route', '$location', '$451', 'U
                         $scope.currentOrder = null;
 
                     //add spending account and only show if balance is greater than $0.00
+                    //Display without ( ) for negative balance for RC group -- PW-12309
                     SpendingAccount.query(function(data) {
                         $scope.SpendingAccounts = data;
                     });

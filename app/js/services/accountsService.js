@@ -9,6 +9,10 @@ four51.app.factory('SpendingAccount', ['$resource', '$rootScope', '$451', functi
 	function _extend(list) {
 		angular.forEach(list, function(i) {
 			i.ForPurchase = i.AccountType.PurchaseCredit;
+
+            if (i.Label.toLowerCase().indexOf('spend') == 0) {
+                i.Balance = (i.Balance < 0) ? (i.Balance * -1) : i.Balance;
+            }
 		});
 	}
 
