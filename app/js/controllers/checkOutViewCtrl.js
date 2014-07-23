@@ -25,9 +25,9 @@ function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, 
 			$scope.currentOrder.BillAddressID = address.ID;
 			$scope.billaddressform = false;
 		}
-		AddressList.query(function(list) {
-			$scope.addresses = list;
-		});
+        CustomAddressList.getall(function(list) {
+            $scope.addresses = list;
+        });
 		$scope.shipaddress = { Country: 'US', IsShipping: true, IsBilling: false };
 		$scope.billaddress = { Country: 'US', IsShipping: false, IsBilling: true };
 	});
