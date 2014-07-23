@@ -47,7 +47,7 @@
         <div class="col-xs-2" ng-show="product.DisplayInventory">
             <div>{{'Quantity Available' | r}}</div>
             <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
-                {{group.QuantityAvailable}}
+                <b>{{group.QuantityAvailable}}</b>
             </div>
         </div>
         <div class="col-xs-1">
