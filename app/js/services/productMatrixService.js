@@ -171,9 +171,25 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
         _then(success, lineItems);
     }
 
+    var _backOrderValidate = function(matrix, product, success) {
+        var backOrderMessage = [];
+        angular.forEach(matrix, function(group) {
+            angular.forEach(group, function(variant) {
+                var qty = variant.Quantity;
+                if (qty > variant.QuantityAvailable) {
+                    var name = variant.DisplayName[0] + (variant.DisplayName[1] ? variant.DisplayName[1] : "");
+                    backOrderMessage.push(name);
+                }
+            });
+        });
+
+        _then(success, backOrderMessage);
+    }
+
     return {
         build: _build,
         validateQuantity: _validateQty,
-        addToOrder: _addToOrder
+        addToOrder: _addToOrder,
+        backOrderValidate: _backOrderValidate
     }
 }]);

@@ -24,6 +24,10 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
             ProductMatrix.validateQuantity($scope.comboVariants, $scope.product, function(message) {
                 $scope.qtyError = message;
             });
+            $scope.backOrderErrors = "";
+            ProductMatrix.backOrderValidate($scope.comboVariants, $scope.product, function(data) {
+                $scope.backOrderErrors = data;
+            });
         };
 
         $scope.addVariantsToOrder = function(){
