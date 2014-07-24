@@ -81,7 +81,7 @@ function ($scope, $routeParams, $route, $location, $451, Product, ProductDisplay
 			$scope.currentOrder.LineItems.push($scope.LineItem);
 		}
 		$scope.addToOrderIndicator = true;
-		Order.save($scope.currentOrder,
+		Order.clearshipper($scope.currentOrder).save($scope.currentOrder,
 			function(o){
 				$scope.user.CurrentOrderID = o.ID;
 				User.save($scope.user, function(){

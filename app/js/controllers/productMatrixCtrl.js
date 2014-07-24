@@ -40,7 +40,7 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
                 angular.forEach(lineItems, function(li) {
                     $scope.currentOrder.LineItems.push(li);
                 });
-                Order.save($scope.currentOrder,
+                Order.clearshipper($scope.currentOrder).save($scope.currentOrder,
                     function(o){
                         $scope.$parent.$parent.user.CurrentOrderID = o.ID;
                         User.save($scope.$parent.$parent.user, function(){
