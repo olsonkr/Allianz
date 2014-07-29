@@ -6,11 +6,23 @@ four51.app.factory('SpendingAccount', ['$resource', '$rootScope', '$451', functi
         }
     }
 
+    function inRCGroup() {
+        var result = false;
+        if ($rootScope && $rootScope.$$childHead && $rootScope.$$childHead.user) {
+            angular.forEach($rootScope.$$childHead.user.Groups, function(g) {
+                if (g.Name == 'RC') {
+                    result = true;
+                }
+            });
+        }
+        return result;
+    }
+
 	function _extend(list) {
 		angular.forEach(list, function(i) {
 			i.ForPurchase = i.AccountType.PurchaseCredit;
 
-            if (i.Label.toLowerCase().indexOf('spend') == 0) {
+            if (i.Label.toLowerCase() == 'ytd spend' || inRCGroup()) {
                 i.Balance = (i.Balance < 0) ? (i.Balance * -1) : i.Balance;
             }
 		});

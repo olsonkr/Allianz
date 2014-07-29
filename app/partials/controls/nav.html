@@ -88,7 +88,7 @@
                     <li class="social hidden-xs hidden-sm"><a href="//linkedin.com" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a></li>
                     <li class="social hidden-xs hidden-sm"><a href="//youtube.com" target="_blank"><i class="fa fa-2x fa-youtube-square"></i></a></li>
                     <li class="hidden-xs hidden-sm spending-account" ng-show="SpendingAccounts[0].Balance">
-                        <span>Balance</span><br />{{(SpendingAccounts[0].Balance | currency) || (0 | currency)}}
+                        <span>YTD Spend</span><br />{{(SpendingAccounts[0].Balance | currency) || (0 | currency)}}
                     </li>
                     <li class="cart" ng-class="{'active': isActive(['cart', 'checkout'])}">
                         <a id="451qa_cart_link" ng-show="cartCount && user.CurrentOrderID" class="cart" href="cart">
