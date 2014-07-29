@@ -61,7 +61,7 @@ four51.app.controller('CartViewCtrl', ['$scope', '$location', '$451', 'Order', '
             if (confirm('Are you sure you wish to remove this item from your cart?') == true) {
                 Order.deletelineitem($scope.currentOrder.ID, item.ID,
                     function(order) {
-                        Order.clearshipper(order);
+                        if (order) Order.clearshipper(order);
                         $scope.currentOrder = order;
                         if (!order) {
                             $scope.user.CurrentOrderID = null;
