@@ -13,13 +13,13 @@
                 <b>{{item.QuantityAvailable}}</b>
             </div>
         </div>
-        <div class="col-xs-1">
+        <div class="col-xs-2">
             <div>{{'On Order' | r}}</div>
             <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
                 {{item.OrderQuantity}}
             </div>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <div>{{'Price' | r}}</div>
             <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
                 {{(product.StandardPriceSchedule.PriceBreaks[0].Price + item.Markup) | currency}}
@@ -50,13 +50,13 @@
                 <b>{{group.QuantityAvailable}}</b>
             </div>
         </div>
-        <div class="col-xs-1">
+        <div class="col-xs-2">
             <div>{{'On Order' | r}}</div>
             <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
                 {{group.OrderQuantity}}
             </div>
         </div>
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <div>{{'Price' | r}}</div>
             <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
                 {{(product.StandardPriceSchedule.PriceBreaks[0].Price + group.Markup) | currency}}
@@ -75,7 +75,7 @@
 </div>
 <br />
 <div class="alert alert-danger" style="margin-top:20px;" ng-show="qtyError" ng-bind-html="qtyError"></div>
-<div class="alert alert-info" ng-show="backOrderErrors.length > 0">
+<div class="alert alert-info" ng-show="backOrderErrors.length > 0 && !qtyError">
     Variants on backorder:
         <span ng-repeat="item in backOrderErrors">
             {{item}}<span ng-show="backOrderErrors.length > 0 && $index != (backOrderErrors.length - 1)">,</span>
