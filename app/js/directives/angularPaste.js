@@ -51,57 +51,59 @@ function ($parse, $rootScope, $document, Address, Resources) {
 									$parse(attrs.ngArray).assign($scope, asArray);
 									var addressPasteList = [];
 									for (var i = 0; i < $scope.parsedPaste.length; i++) {
-										var a = {};
-                                        a.AddressName = $scope.parsedPaste[i][0];
-                                        a.FirstName = $scope.parsedPaste[i][1];
-                                        a.LastName = $scope.parsedPaste[i][2];
-                                        a.CompanyName = $scope.parsedPaste[i][3];
-                                        a.Street1 = $scope.parsedPaste[i][4];
-                                        a.Street2 = $scope.parsedPaste[i][5];
-                                        a.City = $scope.parsedPaste[i][6];
-                                        a.State = $scope.parsedPaste[i][7];
-                                        a.Zip = $scope.parsedPaste[i][8];
-                                        a.Phone = $scope.parsedPaste[i][9];
-                                        a.Invalid = false;
-
-										var stateValid = false;
-										angular.forEach(stateList, function(state) {
-											if (state.value == a.State) {
-												stateValid = true;
-											}
-										});
-										if (!stateValid) {
-                                            a.State = "";
-                                            a.Country = "";
-										}
-										else {
-											for (var s = 0; s < stateList.length; s++) {
-												if (a.State == stateList[s].value) {
-                                                    a.Country = stateList[s].country;
-												}
-											}
-										}
-
-										if (a.FirstName == "" ||
-                                            a.LastName == "" ||
-                                            a.Street1 == "" ||
-                                            a.City == "" ||
-                                            a.State == "" ||
-											!stateValid ||
-                                            a.Zip == "")
-										{
-                                            a.AddressInvalid = true;
-                                            a.Invalid = true;
-										}
-										else {
-                                            a.AddressInvalid = false;
+										if ($scope.parsedPaste[i][0] != 'Address Name') {
+                                            var a = {};
+                                            a.AddressName = $scope.parsedPaste[i][0];
+                                            a.FirstName = $scope.parsedPaste[i][1];
+                                            a.LastName = $scope.parsedPaste[i][2];
+                                            a.CompanyName = $scope.parsedPaste[i][3];
+                                            a.Street1 = $scope.parsedPaste[i][4];
+                                            a.Street2 = $scope.parsedPaste[i][5];
+                                            a.City = $scope.parsedPaste[i][6];
+                                            a.State = $scope.parsedPaste[i][7];
+                                            a.Zip = $scope.parsedPaste[i][8];
+                                            a.Phone = $scope.parsedPaste[i][9];
                                             a.Invalid = false;
-										}
-                                        a.ErrorMessage = null;
-                                        a.Selected = false;
-                                        a.AwardCount = 0;
 
-                                        addressPasteList.push(a);
+                                            var stateValid = false;
+                                            angular.forEach(stateList, function(state) {
+                                                if (state.value == a.State) {
+                                                    stateValid = true;
+                                                }
+                                            });
+                                            if (!stateValid) {
+                                                a.State = "";
+                                                a.Country = "";
+                                            }
+                                            else {
+                                                for (var s = 0; s < stateList.length; s++) {
+                                                    if (a.State == stateList[s].value) {
+                                                        a.Country = stateList[s].country;
+                                                    }
+                                                }
+                                            }
+
+                                            if (a.FirstName == "" ||
+                                                a.LastName == "" ||
+                                                a.Street1 == "" ||
+                                                a.City == "" ||
+                                                a.State == "" ||
+                                                !stateValid ||
+                                                a.Zip == "")
+                                            {
+                                                a.AddressInvalid = true;
+                                                a.Invalid = true;
+                                            }
+                                            else {
+                                                a.AddressInvalid = false;
+                                                a.Invalid = false;
+                                            }
+                                            a.ErrorMessage = null;
+                                            a.Selected = false;
+                                            a.AwardCount = 0;
+
+                                            addressPasteList.push(a);
+                                        }
 									}
 
 									$scope.tempPasteError = false;
@@ -140,90 +142,92 @@ function ($parse, $rootScope, $document, Address, Resources) {
 									$parse(attrs.ngArray).assign($scope, asArray);
 									var addressPasteList = [];
 									for (var i = 0; i < $scope.parsedPaste.length; i++) {
-										var a = {};
-                                        a.AddressName = $scope.parsedPaste[i][0];
-                                        a.FirstName = $scope.parsedPaste[i][1];
-                                        a.LastName = $scope.parsedPaste[i][2];
-                                        a.CompanyName = $scope.parsedPaste[i][3];
-                                        a.Street1 = $scope.parsedPaste[i][4];
-                                        a.Street2 = $scope.parsedPaste[i][5];
-                                        a.City = $scope.parsedPaste[i][6];
-                                        a.State = $scope.parsedPaste[i][7];
-                                        a.Zip = $scope.parsedPaste[i][8];
-                                        a.Phone = $scope.parsedPaste[i][9];
-                                        a.Invalid = false;
+                                        if ($scope.parsedPaste[i][0] != 'Address Name') {
+                                            var a = {};
+                                            a.AddressName = $scope.parsedPaste[i][0];
+                                            a.FirstName = $scope.parsedPaste[i][1];
+                                            a.LastName = $scope.parsedPaste[i][2];
+                                            a.CompanyName = $scope.parsedPaste[i][3];
+                                            a.Street1 = $scope.parsedPaste[i][4];
+                                            a.Street2 = $scope.parsedPaste[i][5];
+                                            a.City = $scope.parsedPaste[i][6];
+                                            a.State = $scope.parsedPaste[i][7];
+                                            a.Zip = $scope.parsedPaste[i][8];
+                                            a.Phone = $scope.parsedPaste[i][9];
+                                            a.Invalid = false;
 
-											var stateValid = false;
-											angular.forEach(stateList, function(state) {
-												if (state.value == a.State) {
-													stateValid = true;
-												}
-											});
-											if (!stateValid) {
+                                            var stateValid = false;
+                                            angular.forEach(stateList, function(state) {
+                                                if (state.value == a.State) {
+                                                    stateValid = true;
+                                                }
+                                            });
+                                            if (!stateValid) {
                                                 a.State = "";
                                                 a.Country = "";
-											}
-											else {
-												for (var s = 0; s < stateList.length; s++) {
-													if (a.State == stateList[s].value) {
+                                            }
+                                            else {
+                                                for (var s = 0; s < stateList.length; s++) {
+                                                    if (a.State == stateList[s].value) {
                                                         a.Country = stateList[s].country;
-													}
-												}
-											}
-
-                                        var errorCnt = 0;
-                                        var errors = [];
-                                        if (a.AddressName == "") {
-                                            errorCnt++;
-                                            errors.push("Address Name");
-                                        }
-                                        if (a.FirstName == "") {
-                                            errorCnt++;
-                                            errors.push("First Name");
-                                        }
-                                        if (a.LastName == "") {
-                                            errorCnt++;
-                                            errors.push("Last Name");
-                                        }
-                                        if (a.Street1 == "") {
-                                            errorCnt++;
-                                            errors.push("Address Line 1");
-                                        }
-                                        if (a.City == "") {
-                                            errorCnt++;
-                                            errors.push("City");
-                                        }
-                                        if (a.State == "") {
-                                            errorCnt++;
-                                            errors.push("State");
-                                        }
-                                        if (!stateValid) {
-                                            errorCnt++;
-                                            errors.push("State value is invalid");
-                                        }
-                                        if (a.Zip == "") {
-                                            errorCnt++;
-                                            errors.push("Zip Code");
-                                        }
-
-                                        if (errorCnt > 0) {
-                                            $scope.tempPasteError = true;
-                                            a.Invalid = true;
-                                            var addressIdentifier = (a.FirstName != "" && a.LastName != "")
-                                                ? a.FirstName + " " + a.LastName
-                                                : "Address " + (i + 1);
-                                            a.ErrorMessage = addressIdentifier + " is missing the following fields: ";
-                                            for (var e = 0; e < errors.length; e++) {
-                                                if (e < errors.length - 1) {
-                                                    a.ErrorMessage += " " + errors[e] + ",";
-                                                }
-                                                else {
-                                                    a.ErrorMessage += " " + errors[e];
+                                                    }
                                                 }
                                             }
-                                        }
 
-                                        addressPasteList.push(a);
+                                            var errorCnt = 0;
+                                            var errors = [];
+                                            if (a.AddressName == "") {
+                                                errorCnt++;
+                                                errors.push("Address Name");
+                                            }
+                                            if (a.FirstName == "") {
+                                                errorCnt++;
+                                                errors.push("First Name");
+                                            }
+                                            if (a.LastName == "") {
+                                                errorCnt++;
+                                                errors.push("Last Name");
+                                            }
+                                            if (a.Street1 == "") {
+                                                errorCnt++;
+                                                errors.push("Address Line 1");
+                                            }
+                                            if (a.City == "") {
+                                                errorCnt++;
+                                                errors.push("City");
+                                            }
+                                            if (a.State == "") {
+                                                errorCnt++;
+                                                errors.push("State");
+                                            }
+                                            if (!stateValid) {
+                                                errorCnt++;
+                                                errors.push("State value is invalid");
+                                            }
+                                            if (a.Zip == "") {
+                                                errorCnt++;
+                                                errors.push("Zip Code");
+                                            }
+
+                                            if (errorCnt > 0) {
+                                                $scope.tempPasteError = true;
+                                                a.Invalid = true;
+                                                var addressIdentifier = (a.FirstName != "" && a.LastName != "")
+                                                    ? a.FirstName + " " + a.LastName
+                                                    : "Address " + (i + 1);
+                                                a.ErrorMessage = addressIdentifier + " is missing the following fields: ";
+                                                for (var e = 0; e < errors.length; e++) {
+                                                    if (e < errors.length - 1) {
+                                                        a.ErrorMessage += " " + errors[e] + ",";
+                                                    }
+                                                    else {
+                                                        a.ErrorMessage += " " + errors[e];
+                                                    }
+                                                }
+                                            }
+
+                                            addressPasteList.push(a);
+                                        }
 									}
 
 									$scope.tempAddressPasteList =  addressPasteList;
