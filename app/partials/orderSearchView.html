@@ -71,7 +71,7 @@
                             <div class="btn btn-default btn-block btn-date hidden-lg hidden-md"
                                  ng-click="$event.preventDefault();$event.stopPropagation();startopened = !startopened;"
                                  style="margin:0; height:40px; padding-top:8px;">
-                                {{criteria.DateRangeFrom ? '' : 'Tap'}}
+                                {{criteria.DateRangeFrom ? '' : 'Start Date'}}
                                 <span class="text-info">{{criteria.DateRangeFrom | date:'M/dd/yy'}}</span>
                             </div>
                             <input name="daterangefrom" placeholder="{{'Start' | r}} {{'Date' | r}}" ng-model="criteria.DateRangeFrom"
@@ -86,7 +86,7 @@
                             <div class="btn btn-default btn-block btn-date hidden-lg hidden-md"
                                  ng-click="$event.preventDefault();$event.stopPropagation();endopened = !endopened;"
                                  style="margin:0; height:40px; padding-top:8px;">
-                                {{criteria.DateRangeTo ? '' : 'Tap'}}
+                                {{criteria.DateRangeTo ? '' : 'End Date'}}
                                 <span class="text-info">{{criteria.DateRangeTo | date:'M/dd/yy'}}</span>
                             </div>
                             <input name="daterangeto" placeholder="{{'End' | r}} {{'Date' | r}}" ng-model="criteria.DateRangeTo"
@@ -163,7 +163,7 @@
                     {{order.Type}}
                 </div>
                 <div class="col-sm-2">
-                     <span class="visible-xs panel-table-heading-xs text-info">{{'Status' | r}}</span>
+                    <span class="visible-xs panel-table-heading-xs text-info">{{'Status' | r}}</span>
                     {{order.StatusText}}
                 </div>
                 <div class="col-sm-2">
