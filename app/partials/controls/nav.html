@@ -90,8 +90,8 @@
                     <li class="hidden-xs hidden-sm spending-account" ng-show="SpendingAccounts[0].Balance">
                         <span>YTD Spend</span><br />{{(SpendingAccounts[0].Balance | currency) || (0 | currency)}}
                     </li>
-                    <li class="cart" ng-class="{'active': isActive(['cart', 'checkout'])}" ng-if="order.FromUserID == user.ID && order.Status != 'Unsubmitted'">
-                        <a id="451qa_cart_link" ng-show="cartCount && user.CurrentOrderID" class="cart" href="cart">
+                    <li class="cart" ng-class="{'active': isActive(['cart', 'checkout'])}">
+                        <a id="451qa_cart_link" ng-show="cartCount >= 1 && user.CurrentOrderID" class="cart" href="cart">
                             <span ng-bind="cartCount" class="badge"></span>
                             <i class="fa fa-shopping-cart"></i>
                             <i class="fa fa-caret-down"></i>
