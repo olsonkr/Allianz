@@ -18,7 +18,7 @@
             </h3>
         </div>
         <div class="panel-lineitem" ng-repeat="item in currentOrder.LineItems">
-            <button title="Remove Item" class="btn btn-danger" ng-click="removeItem(item)">
+            <button type="button"  title="Remove Item" class="btn btn-danger" ng-click="removeItem(item)">
                 <span class="fa fa-minus-circle fa-inverse"></span>
             </button>
             <div class="col-sm-3">
@@ -119,7 +119,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <button class="btn btn-default" ng-show="item.SpecsLength > 0" ng-init="toggleSpecs = false" ng-click="toggleSpecs = !toggleSpecs">
+                        <button type="button"  class="btn btn-default" ng-show="item.SpecsLength > 0" ng-init="toggleSpecs = false" ng-click="toggleSpecs = !toggleSpecs">
                             <span ng-show="toggleSpecs == false"><i class="fa fa-plus-circle"></i> {{'Show' | r}} </span>
                             <span ng-show="toggleSpecs == true"><i class="fa fa-minus-circle"></i> {{'Hide' | r}} </span>
                             {{'Specification' | r}}
@@ -187,16 +187,16 @@
         </div>
         <ul>
             <li>
-                <button class="btn btn-danger" ng-click="cancelOrder()"><small>{{'Cancel' | r}} {{'Order' | r}}</small></button>
+                <button type="button" class="btn btn-danger" ng-click="cancelOrder()"><small>{{'Cancel' | r}} {{'Order' | r}}</small></button>
             </li>
             <li>
-                <button class="btn btn-primary" ng-click="saveChanges()">
+                <button type="submit" class="btn btn-primary" ng-click="saveChanges()">
                     <loadingindicator  ng-show="displayLoadingIndicator" />
-                    <small>{{'Save' | r}} {{'Order' | r}}</small>
+                    <small>{{('Save' | r) + ' ' + ('Order' | r) | xlat}}</small>
                 </button>
             </li>
             <li>
-                <button class="btn" ng-class="{'btn-warning': cart.$invalid, 'btn-success': !cart.$invalid }" ng-click="checkOut()" ng-disabled="cart.$invalid">
+                <button  type="button" class="btn" ng-class="{'btn-warning': cart.$invalid, 'btn-success': !cart.$invalid }" ng-click="checkOut()" ng-disabled="cart.$invalid">
                     <i ng-show="cart.$invalid" class="fa fa-warning"></i>
                     <span>{{'Check Out' | r}} {{window.outerWidth}}</span>
                 </button>
