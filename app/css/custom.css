@@ -348,3 +348,7 @@ h2.thumbnail img {
 .matrix-grid > div:last-of-type > div input {
     text-align: center;
 }
+
+.recipient-upload-table-xs-sm > div > div {
+    border-left: none !important;
+}

@@ -88,7 +88,7 @@
                         <li ng-repeat="a in tempAddressPasteList | filter:{Invalid:true}">{{a.ErrorMessage}}</li>
                     </ul>
                 </div>
-                <div class="recipient-upload-table">
+                <div class="recipient-upload-table hidden-xs hidden-sm">
                     <div class="row" ng-hide="addressPasteList.length == 0 || !addressPasteList">
                         <div class="col-xs-12">
                             <div class="row">
@@ -105,22 +105,37 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="recipient-paste-row" ng-class-odd="'odd'" ng-class-even="'even'" ng-repeat="address in addressPasteList">
-                        <div class="row">
-                            <div class="col-md-2 col-xs-6"><b>{{address.AddressName}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.FirstName}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.LastName}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.CompanyName}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.Street1}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.Street2}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.City}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.State}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.Zip}}</b></div>
-                            <div class="col-md-1 col-xs-12"><b>{{address.Phone}}</b></div>
+                        <div class="col-xs-12">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-6">{{address.AddressName}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.FirstName}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.LastName}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.CompanyName}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.Street1}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.Street2}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.City}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.State}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.Zip}}</div>
+                                <div class="col-md-1 col-xs-12">{{address.Phone}}</div>
+                            </div>
                         </div>
                     </div>
-            </div>
+                </div>
+                <div class="recipient-upload-table-xs-sm visible-xs visible-sm">
+                    <div ng-repeat="address in addressPasteList">
+                        <div class="col-xs-12" ng-show="address.AddressName"><b>{{address.AddressName}}</b></div>
+                        <div class="col-xs-6" ng-show="address.FirstName">{{address.FirstName}}</div>
+                        <div class="col-xs-6" ng-show="address.LastName">{{address.LastName}}</div>
+                        <div class="col-xs-12" ng-show="address.CompanyName">{{address.CompanyName}}</div>
+                        <div class="col-xs-12" ng-show="address.Street1">{{address.Street1}}</div>
+                        <div class="col-xs-12" ng-show="address.Street2">{{address.Street2}}</div>
+                        <div class="col-xs-6" ng-show="address.City">{{address.City}}</div>
+                        <div class="col-xs-3" ng-show="address.State">{{address.State}}</div>
+                        <div class="col-xs-3" ng-show="address.Zip">{{address.Zip}}</div>
+                        <div class="col-xs-12" ng-show="address.Phone">{{address.Phone}}</div>
+                    </div>
+                </div>
         </div>
     </div>
 </section>
