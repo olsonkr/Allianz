@@ -75,7 +75,7 @@
 </div>
 <br />
 <div class="alert alert-danger" style="margin-top:20px;" ng-show="qtyError" ng-bind-html="qtyError"></div>
-<div class="alert alert-info" ng-show="backOrderErrors.length > 0 && !qtyError">
+<div style="font-weight:bold" class="alert alert-danger" ng-show="backOrderErrors.length > 0">
     Variants on backorder:
         <span ng-repeat="item in backOrderErrors">
             {{item}}<span ng-show="backOrderErrors.length > 0 && $index != (backOrderErrors.length - 1)">,</span>
