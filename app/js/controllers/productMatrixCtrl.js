@@ -4,11 +4,17 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
         $scope.searchTerm = null;
         $scope.currentOrder = $scope.$parent.$parent.currentOrder;
 
+        $scope.lineItemIndex = $routeParams.lineItemIndex;
+
         function init(searchTerm) {
             ProductDisplayService.getProductAndVariant($routeParams.productInteropID, $routeParams.variantInteropID, function (data) {
                 $scope.product = data.product;
                 if ($scope.product.IsVBOSS) {
-                    ProductMatrix.build($scope.product, $scope.currentOrder, function(matrix, specCount, spec1Name, spec2Name) {
+                    var lineItemEdit = null;
+                    if ($scope.lineItemIndex) {
+                        lineItemEdit = $scope.currentOrder.LineItems[$scope.lineItemIndex];
+                    }
+                    ProductMatrix.build($scope.product, $scope.currentOrder, lineItemEdit, function(matrix, specCount, spec1Name, spec2Name) {
                         $scope.specCount = specCount;
                         $scope.spec1Name = spec1Name;
                         $scope.spec2Name = spec2Name;
@@ -30,31 +36,72 @@ four51.app.controller('ProductMatrixCtrl', ['$scope', '$routeParams', '$route', 
             });
         };
 
+        function saveOrder(order) {
+            Order.clearshipper($scope.currentOrder).save($scope.currentOrder,
+                function(o){
+                    $scope.$parent.$parent.user.CurrentOrderID = o.ID;
+                    User.save($scope.$parent.$parent.user, function(){
+                        $scope.addToOrderIndicator = true;
+                        $location.path('/cart');
+                    });
+                },
+                function(ex) {
+                    $scope.addToOrderIndicator = false;
+                    $scope.addToOrderError = ex.Message;
+                    $route.reload();
+                }
+            );
+        }
+
         $scope.addVariantsToOrder = function(){
             if(!$scope.currentOrder){
                 $scope.currentOrder = {};
                 $scope.currentOrder.LineItems = [];
             }
-            ProductMatrix.addToOrder($scope.comboVariants, $scope.product, function(lineItems) {
-                $scope.addToOrderIndicator = true;
-                angular.forEach(lineItems, function(li) {
-                    $scope.currentOrder.LineItems.push(li);
+            if (!$scope.lineItemIndex) {
+                ProductMatrix.addToOrder($scope.comboVariants, $scope.product, function(lineItems) {
+                    $scope.addToOrderIndicator = true;
+                    angular.forEach(lineItems, function(li) {
+                        $scope.currentOrder.LineItems.push(li);
+                    });
+                    saveOrder($scope.currentOrder);
+                    /*Order.clearshipper($scope.currentOrder).save($scope.currentOrder,
+                        function(o){
+                            $scope.$parent.$parent.user.CurrentOrderID = o.ID;
+                            User.save($scope.$parent.$parent.user, function(){
+                                $scope.addToOrderIndicator = true;
+                                $location.path('/cart');
+                            });
+                        },
+                        function(ex) {
+                            $scope.addToOrderIndicator = false;
+                            $scope.addToOrderError = ex.Message;
+                            $route.reload();
+                        }
+                    );*/
                 });
-                Order.clearshipper($scope.currentOrder).save($scope.currentOrder,
-                    function(o){
-                        $scope.$parent.$parent.user.CurrentOrderID = o.ID;
-                        User.save($scope.$parent.$parent.user, function(){
-                            $scope.addToOrderIndicator = true;
-                            $location.path('/cart');
+            }
+            else {
+                $scope.addToOrderIndicator = true;
+                if ($scope.specCount == 1) {
+                    angular.forEach($scope.comboVariants, function(variant) {
+                        if (variant[0].Quantity) {
+                            $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant[0].Quantity;
+                        }
+                    });
+                    saveOrder($scope.currentOrder);
+                }
+                else {
+                    angular.forEach($scope.comboVariants, function(group) {
+                        angular.forEach(group, function(variant) {
+                            if (variant.Quantity) {
+                                $scope.currentOrder.LineItems[$scope.lineItemIndex].Quantity = variant.Quantity;
+                            }
                         });
-                    },
-                    function(ex) {
-                        $scope.addToOrderIndicator = false;
-                        $scope.addToOrderError = ex.Message;
-                        $route.reload();
-                    }
-                );
-            });
+                    });
+                    saveOrder($scope.currentOrder);
+                }
+            }
         };
     }]);
 

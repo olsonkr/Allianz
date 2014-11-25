@@ -4,7 +4,7 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
             fn(data, count, s1, s2);
     }
 
-    var _build = function(product, order, success) {
+    var _build = function(product, order, lineItemEdit, success) {
         var specCombos = {};
         var defineVariantSpecs = {};
         var defineVariantSpecCount = 0;
@@ -81,6 +81,8 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                 variant.Markup = params.Markup;
                 variant.tempSpecs = {};
                 variant.ListOrder = params.ListOrder;
+                variant.Show = lineItemEdit ? (variant.ExternalID == lineItemEdit.Variant.ExternalID) : true;
+                if (variant.Show && lineItemEdit) variant.Quantity = lineItemEdit.Quantity;
                 angular.forEach(product.Specs, function(spec) {
                     angular.forEach(spec.Options, function(option) {
                         if (option.ID == params[0]) {
@@ -103,6 +105,7 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                     comboVariants[group].Markup = variant.Markup;
                     comboVariants[group].OrderQuantity = variant.OrderQuantity;
                     comboVariants[group].ListOrder = variant.ListOrder;
+                    comboVariants[group].Show = variant.Show;
                 }
                 comboVariants[group].push(variant);
                 if (variantCount == comboCount) {

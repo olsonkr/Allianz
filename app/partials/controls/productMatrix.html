@@ -1,33 +1,33 @@
-<div ng-repeat="group in comboVariants"  ng-show="specCount == 2">
+<div ng-repeat="group in comboVariants" ng-show="specCount == 2 && (group | filter:{Show: true}).length > 0">
     <h3>{{group.DisplayName}}</h3>
     <div class="row matrix-grid">
         <div class="col-xs-3">
             <div>{{spec2Name}}</div>
-            <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
+            <div ng-repeat="item in group | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <b>{{item.DisplayName[1]}}</b>
             </div>
         </div>
         <div class="col-xs-2" ng-show="product.DisplayInventory">
             <div>{{'Quantity Available' | r}}</div>
-            <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
+            <div ng-repeat="item in group | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <b>{{item.QuantityAvailable}}</b>
             </div>
         </div>
         <div class="col-xs-2">
             <div>{{'On Order' | r}}</div>
-            <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
+            <div ng-repeat="item in group | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 {{item.OrderQuantity}}
             </div>
         </div>
         <div class="col-xs-2">
             <div>{{'Price' | r}}</div>
-            <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
+            <div ng-repeat="item in group | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 {{(product.StandardPriceSchedule.PriceBreaks[0].Price + item.Markup) | currency}}
             </div>
         </div>
         <div class="col-xs-3">
             <div>{{'Quantity' | r}}</div>
-            <div ng-repeat="item in group | orderobjectby:'ListOrder':false">
+            <div ng-repeat="item in group | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <div>
                     <select id="451qa_input_qty" class="form-control" ng-change="qtyChanged()" ng-if="product.PriceSchedule.RestrictedQuantity" ng-model="item.Quantity" ng-options="pb.Quantity as getRestrictedQtyText(pb, product.QuantityMultiplier) for pb in product.PriceSchedule.PriceBreaks"><option value=""></option></select>
                     <input id="451qa_input_qty" placeholder="0" autocomplete="off" class="form-control" ng-change="qtyChanged()" ng-if="!product.PriceSchedule.RestrictedQuantity" type="text" name="qtyInput" ng-model="item.Quantity"/>
@@ -40,31 +40,31 @@
     <div class="row matrix-grid">
         <div class="col-xs-3">
             <div>{{spec1Name}}</div>
-            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
+            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <b>{{group.DisplayName}}</b>
             </div>
         </div>
         <div class="col-xs-2" ng-show="product.DisplayInventory">
             <div>{{'Quantity Available' | r}}</div>
-            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
+            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <b>{{group.QuantityAvailable}}</b>
             </div>
         </div>
         <div class="col-xs-2">
             <div>{{'On Order' | r}}</div>
-            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
+            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 {{group.OrderQuantity}}
             </div>
         </div>
         <div class="col-xs-2">
             <div>{{'Price' | r}}</div>
-            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
+            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 {{(product.StandardPriceSchedule.PriceBreaks[0].Price + group.Markup) | currency}}
             </div>
         </div>
         <div class="col-xs-3">
             <div>{{'Quantity' | r}}</div>
-            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false">
+            <div ng-repeat="group in comboVariants | orderobjectby:'ListOrder':false | filter:{Show: true}">
                 <div>
                     <select id="451qa_input_qty" class="form-control" ng-change="qtyChanged()" ng-if="product.PriceSchedule.RestrictedQuantity" ng-model="group[0].Quantity" ng-options="pb.Quantity as getRestrictedQtyText(pb, product.QuantityMultiplier) for pb in product.PriceSchedule.PriceBreaks"><option value=""></option></select>
                     <input id="451qa_input_qty" placeholder="0" autocomplete="off" class="form-control" ng-change="qtyChanged()" ng-if="!product.PriceSchedule.RestrictedQuantity" type="text" name="qtyInput" ng-model="group[0].Quantity"/>
