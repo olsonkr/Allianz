@@ -4,14 +4,29 @@
             {{item.ProductIDText}}
         </h3>
         <span>{{item.Product.Name}}</span>
-        <ul ng-show="item.Specs | filter:{'CanSetForLineItem':true}.length > 0">
-            <li class="text-center" ng-repeat="spec in item.Specs | filter:{'CanSetForLineItem':true} ">
-                <span class="text-info">{{spec.Name}} </span>
-                <span ng-if="spec.ControlType == 'File'"><a ng-href="{{spec.File.Url}}">{{spec.File.OriginalName + Extension}}</a></span></span>
-                <span ng-if="spec.ControlType != 'File'">{{spec.Value || '(unspecified)'}}</span>
-            </li>
-        </ul>
-     </div>
+        <div class="col-xs-12">
+            </br>
+            <button type="button"  class="btn btn-default" ng-show="item.SpecsLength > 0" ng-init="toggleSpecs = false" ng-click="toggleSpecs = !toggleSpecs">
+                <span ng-show="toggleSpecs == false"><i class="fa fa-plus-circle"></i> {{'Show' | r}} </span>
+                <span ng-show="toggleSpecs == true"><i class="fa fa-minus-circle"></i> {{'Hide' | r}} </span>
+                {{'Specification' | r}}
+            </button>
+            <ul ng-show="toggleSpecs == true" class="list-group">
+                <li ng-repeat="spec in item.Specs | filter:{'CanSetForLineItem':true} " class="list-group-item">
+                    <span class="text-info">{{spec.Name}}: </span>
+                    <span ng-if="spec.ControlType == 'File'"><a ng-href="{{spec.File.Url}}">{{spec.File.OriginalName + Extension}}</a></span></span>
+                    <span ng-if="spec.ControlType != 'File'">{{spec.Value || '(unspecified)'}}</span>
+                </li>
+            </ul>
+        </div>
+        <!-- ul ng-show="item.Specs | filter:{'CanSetForLineItem':true}.length > 0">
+                  <li class="text-center" ng-repeat="spec in item.Specs | filter:{'CanSetForLineItem':true} ">
+                      <span class="text-info">{{spec.Name}} </span>
+                      <span ng-if="spec.ControlType == 'File'"><a ng-href="{{spec.File.Url}}">{{spec.File.OriginalName + Extension}}</a></span></span>
+                      <span ng-if="spec.ControlType != 'File'">{{spec.Value || '(unspecified)'}}</span>
+                  </li>
+              </ul -->
+    </div>
     <div class="col-sm-6">
         <div class="row">
             <div ng-if="!(user.Permissions.contains('HidePricing'))" class="col-xs-12 col-sm-4">
