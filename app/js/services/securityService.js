@@ -22,7 +22,13 @@ four51.app.factory('Security', ['$451', '$cookieStore', function($451, $cookieSt
         },
         isAuthenticated: function() {
             this.currentUser =  $cookieStore.get(_cookieName);
-            return !!this.currentUser;
+            if (this.currentUser && this.currentUser.Username) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            //return !!this.currentUser;
         },
         logout: function() {
             $cookieStore.remove(_cookieName);
