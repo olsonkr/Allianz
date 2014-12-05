@@ -123,17 +123,14 @@
                     </div>
                 </div>
                 <div class="recipient-upload-table-xs-sm visible-xs visible-sm">
-                    <div ng-repeat="address in addressPasteList">
-                        <div class="col-xs-12" ng-show="address.AddressName"><b>{{address.AddressName}}</b></div>
-                        <div class="col-xs-6" ng-show="address.FirstName">{{address.FirstName}}</div>
-                        <div class="col-xs-6" ng-show="address.LastName">{{address.LastName}}</div>
-                        <div class="col-xs-12" ng-show="address.CompanyName">{{address.CompanyName}}</div>
-                        <div class="col-xs-12" ng-show="address.Street1">{{address.Street1}}</div>
-                        <div class="col-xs-12" ng-show="address.Street2">{{address.Street2}}</div>
-                        <div class="col-xs-6" ng-show="address.City">{{address.City}}</div>
-                        <div class="col-xs-3" ng-show="address.State">{{address.State}}</div>
-                        <div class="col-xs-3" ng-show="address.Zip">{{address.Zip}}</div>
-                        <div class="col-xs-12" ng-show="address.Phone">{{address.Phone}}</div>
+                    <div ng-repeat="address in addressPasteList" style="border-bottom: 1px solid #dddddd; padding: 5px;">
+                        <div ng-show="address.AddressName"><b>{{address.AddressName}}</b></div>
+                        <div ng-show="address.FirstName || address.LastName">{{address.FirstName}} {{address.LastName}}</div>
+                        <div ng-show="address.CompanyName">{{address.CompanyName}}</div>
+                        <div ng-show="address.Street1">{{address.Street1}}</div>
+                        <div ng-show="address.Street2">{{address.Street2}}</div>
+                        <div ng-show="address.City">{{address.City}}, {{address.State}} {{address.Zip}}</div>
+                        <div ng-show="address.Phone">{{address.Phone}}</div>
                     </div>
                 </div>
         </div>
