@@ -74,7 +74,7 @@ four51.app.directive('quantityfield', ['$451', 'ProductDisplayService', function
 						scope.valid = false;
 					}
                     if ((product.OrderLimit || product.OrderLimit == 0) && qtyAvail < value) {
-                        scope.lineitem.qtyError = "Cannot exceed the the maximum order quantity of " +  qtyAvail;
+                        scope.lineitem.qtyError = qtyAvail > 0 ? "Cannot exceed maximum allowed quantity of " + qtyAvail : "You have ordered the maximum allowed quantity for this product";
                         scope.valid = false;
                     }
 				}
