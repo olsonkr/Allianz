@@ -124,6 +124,7 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
     var _validateQty = function(matrix, product, success) {
         var qtyError = "";
         var priceSchedule = product.StandardPriceSchedule;
+        var totalQty = 0;
         angular.forEach(matrix, function(group) {
             angular.forEach(group, function(variant) {
                 var qty = variant.Quantity;
@@ -131,6 +132,9 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                     if(!$451.isPositiveInteger(qty))
                     {
                         qtyError += "<p>Please select a valid quantity for " + variant.DisplayName[0] + " " + (variant.DisplayName[1] ? variant.DisplayName[1] : "") + "</p>";
+                    }
+                    else {
+                        totalQty += +(qty);
                     }
                 }
                 if(priceSchedule.MinQuantity > qty && qty != 0){
@@ -141,10 +145,15 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                 }
                 var qtyAvail = variant.QuantityAvailable;
                 if(qtyAvail < qty && product.AllowExceedInventory == false){
-                    qtyError = "<p>Quantity cannot exceed the Quantity Available of " +  qtyAvail + " for " + variant.DisplayName[0] + " " + (variant.DisplayName[1] ? variant.DisplayName[1] : "") + "</p>";;
+                    qtyError += "<p>Quantity cannot exceed the Quantity Available of " +  qtyAvail + " for " + variant.DisplayName[0] + " " + (variant.DisplayName[1] ? variant.DisplayName[1] : "") + "</p>";;
+                }
+
+                if (product.OrderLimit && totalQty > product.OrderLimit) {
+                    qtyError = "<p>Order quantity for this product cannot exceed " + product.OrderLimit + "</p>";
                 }
             });
         });
+        console.log(totalQty);
 
         _then(success, qtyError);
     }

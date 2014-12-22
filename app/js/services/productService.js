@@ -1,4 +1,4 @@
-four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', 'Order', function($resource, $451, Security, User, Order) {
+four51.app.factory('Product', ['$resource', '$451', '$filter', 'Security', 'User', 'Order', function($resource, $451, $filter, Security, User, Order) {
 	//var _cacheName = '451Cache.Product.' + $451.apiName;
 	var variantCache = [], productCache = [], criteriaCache;
 	function _then(fn, data, count) {
@@ -81,6 +81,8 @@ four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', 'Order',
             }
 
             product.OrderLimit = null;
+            var limitedProducts = $filter('getfieldbyname')(user.CustomFields, 'LimitedProducts').Value;
+            limitedProducts = limitedProducts ? JSON.parse(limitedProducts) : {};
             angular.forEach(user.CustomFields, function(field) {
                 if (field.Label == 'LimitProduct' && field.Name == product.ExternalID) {
                     product.OrderLimit = +(field.Value || field.DefaultValue);
@@ -91,7 +93,9 @@ four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', 'Order',
                             }
                         });
                     }
-                    console.log(product.OrderLimit);
+                    if (limitedProducts[product.ExternalID]) {
+                        product.OrderLimit -= limitedProducts[product.ExternalID];
+                    }
                 }
             });
         }

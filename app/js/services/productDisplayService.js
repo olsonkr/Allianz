@@ -195,6 +195,7 @@ four51.app.factory('ProductDisplayService', ['$sce', '$451', 'Variant', 'Product
 				&& !scope.LineItem.Variant
 				&& scope.LineItem.Product.Variants
 				&& (scope.LineItem.Product.Variants.length > 0 || scope.LineItem.Product.Type == 'VariableText')
+                && (!scope.LineItem.Product.OrderLimit && scope.LineItem.Product.OrderLimit != 0);
 
 		if(scope.LineItem.Variant){
 			scope.LineItem.PriceSchedule = scope.LineItem.Variant.StandardPriceSchedule ? scope.LineItem.Variant.StandardPriceSchedule : scope.LineItem.Product.StandardPriceSchedule; //include user permissions to decide to show

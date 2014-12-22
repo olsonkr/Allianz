@@ -109,3 +109,29 @@ four51.app.filter('billing', function() {
         return output;
     }
 });
+
+four51.app.filter('getfieldbyname', function() {
+    return function(fields, name) {
+        var result = null;
+
+        angular.forEach(fields, function(field) {
+            if (field.Name == name) {
+                result = field;
+            }
+        });
+        return result;
+    }
+});
+
+four51.app.filter('getfieldbylabel', function() {
+    return function(fields, label) {
+        var result = null;
+
+        angular.forEach(fields, function(field) {
+            if (field.Label == label) {
+                result = field;
+            }
+        });
+        return result;
+    }
+});

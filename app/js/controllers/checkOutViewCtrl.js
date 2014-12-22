@@ -1,5 +1,5 @@
-four51.app.controller('CheckOutViewCtrl', ['$scope', '$location', '$filter', '$rootScope', '$451', 'Analytics', 'User', 'Order', 'OrderConfig', 'FavoriteOrder', 'AddressList', 'CustomAddressList',
-function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, OrderConfig, FavoriteOrder, AddressList, CustomAddressList) {
+four51.app.controller('CheckOutViewCtrl', ['$scope', '$location', '$filter', '$rootScope', '$451', 'Analytics', 'User', 'Order', 'OrderConfig', 'FavoriteOrder', 'AddressList', 'CustomAddressList', 'LimitProducts',
+function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, OrderConfig, FavoriteOrder, AddressList, CustomAddressList, LimitProducts) {
 	if (!$scope.currentOrder) {
         $location.path('catalog');
     }
@@ -37,13 +37,16 @@ function ($scope, $location, $filter, $rootScope, $451, Analytics, User, Order, 
 	    $scope.errorMessage = null;
         Order.submit($scope.currentOrder,
 	        function(data) {
+                var orderID = data.ID;
 				$scope.user.CurrentOrderID = null;
 				User.save($scope.user, function(data) {
 			        $scope.user = data;
 	                $scope.displayLoadingIndicator = false;
+                    LimitProducts.update($scope.user, $scope.currentOrder, function() {
+                        $scope.currentOrder = null;
+                        $location.path('/order/' + orderID);
+                    });
 		        });
-		        $scope.currentOrder = null;
-		        $location.path('/order/' + data.ID);
 	        },
 	        function(ex) {
 		        $scope.errorMessage = ex.Message;
