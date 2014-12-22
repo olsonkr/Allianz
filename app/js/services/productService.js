@@ -1,4 +1,4 @@
-four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', function($resource, $451, Security, User) {
+four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', 'Order', function($resource, $451, Security, User, Order) {
 	//var _cacheName = '451Cache.Product.' + $451.apiName;
 	var variantCache = [], productCache = [], criteriaCache;
 	function _then(fn, data, count) {
@@ -6,8 +6,19 @@ four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', function
 			fn(data, count);
 	}
 
-	function _extend(product) {
-        User.get(function(user) {
+	function _extend(p) {
+        User.get(function(u) {
+            if (u.CurrentOrderID) {
+                Order.get(u.CurrentOrderID, function(o) {
+                    _continue(p, u, o);
+                });
+            }
+            else {
+                _continue(p, u);
+            }
+        });
+
+        function _continue(product, user, order) {
             product.ViewName = product.ViewName || 'default';
             angular.forEach(product.Specs, function(spec) {
                 if (spec.ControlType == 'File' && spec.File && spec.File.Url.indexOf('auth') == -1)
@@ -69,12 +80,21 @@ four51.app.factory('Product', ['$resource', '$451', 'Security', 'User', function
                 return value;
             }
 
+            product.OrderLimit = null;
             angular.forEach(user.CustomFields, function(field) {
-                if (field.Label == 'LimitProduct') {
-                    product.OrderLimit = +(field.DefaultValue || field.Value);
+                if (field.Label == 'LimitProduct' && field.Name == product.ExternalID) {
+                    product.OrderLimit = +(field.Value || field.DefaultValue);
+                    if (order) {
+                        angular.forEach(order.LineItems, function(item) {
+                            if (item.Product.ExternalID == field.Name) {
+                                product.OrderLimit -= item.Quantity;
+                            }
+                        });
+                    }
+                    console.log(product.OrderLimit);
                 }
             });
-        });
+        }
 	}
 
      var _get = function(param, success, page, pagesize, searchTerm) {
