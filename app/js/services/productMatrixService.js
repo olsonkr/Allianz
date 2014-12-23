@@ -153,7 +153,6 @@ four51.app.factory('ProductMatrix', ['$resource', '$451', 'Variant', function($r
                 }
             });
         });
-        console.log(totalQty);
 
         _then(success, qtyError);
     }
