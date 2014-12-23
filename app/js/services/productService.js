@@ -84,7 +84,7 @@ four51.app.factory('Product', ['$resource', '$451', '$filter', 'Security', 'User
             var limitedProducts = $filter('getfieldbyname')(user.CustomFields, 'LimitedProducts').Value;
             limitedProducts = limitedProducts ? JSON.parse(limitedProducts) : {};
             angular.forEach(user.CustomFields, function(field) {
-                if (field.Label == 'LimitProduct' && field.Name == product.ExternalID) {
+                if (field.Label.indexOf('Limit Product') > -1 && field.Name == product.ExternalID) {
                     product.OrderLimit = +(field.Value || field.DefaultValue);
                     if (order) {
                         angular.forEach(order.LineItems, function(item) {
