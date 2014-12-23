@@ -1,11 +1,12 @@
-four51.app.controller('OrderViewCtrl', ['$scope', '$location', '$routeParams', 'Order', 'FavoriteOrder', 'Address', 'User',
-	function ($scope, $location, $routeParams, Order, FavoriteOrder, Address, User) {
+four51.app.controller('OrderViewCtrl', ['$scope', '$location', '$routeParams', 'Order', 'FavoriteOrder', 'Address', 'User', 'LimitProducts',
+	function ($scope, $location, $routeParams, Order, FavoriteOrder, Address, User, LimitProducts) {
 		$scope.loadingIndicator = true;
 
 
 		Order.get($routeParams.id, function(data){
 			$scope.loadingIndicator = false;
 			$scope.order = data;
+            $scope.canRepeat = LimitProducts.analyzerepeatorder($scope.order, $scope.user);
 			$scope.order.recent = ((Date.parse(data.DateSubmitted) + 300000) - new Date().getTime()) > 0;
 			$scope.hasSpecsOnAnyLineItem = false;
 			for(var i = 0; i < data.LineItems.length ; i++) {

@@ -23,10 +23,13 @@
                         <orderhistorysummary ng-if="!(user.Permissions.contains('HidePricing'))"></orderhistorysummary>
                     </div>
                     <div class="panel-footer" ng-if="order.FromUserID == user.ID">
-                        <button ng-disabled="currentOrder" class="btn btn-primary pull-right" ng-click="repeatOrder()">
+                        <button ng-disabled="currentOrder || !canRepeat" class="btn btn-primary pull-right" ng-click="repeatOrder()">
                             <i ng-show="currentOrder" class="fa fa-warning"></i>
                             {{'Repeat' | r}} {{'Order' | r}}
                         </button>
+                        <div class="alert alert-info pull-left" style="margin-top: 10px;" ng-show="!canRepeat">
+                            You may not repeat this order as it contains products that have a limited order quantity
+                        </div>
                     </div>
                 </div>
             </div>
