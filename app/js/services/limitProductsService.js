@@ -54,7 +54,8 @@ four51.app.factory('LimitProducts', ['$resource', '$451', '$filter', 'User', fun
 
             angular.forEach(limitedProducts, function(value, key) {
                 if ($filter('getfieldbyname')(_user.CustomFields, key)) {
-                    var limit = +($filter('getfieldbyname')(_user.CustomFields, key).Value);
+                    var field = $filter('getfieldbyname')(_user.CustomFields, key);
+                    var limit = +(field.Value || field.DefaultValue);
                     var ordered = value;
                     var remaining = limit - value;
                     limitedProducts[key] = {Remaining: remaining, Limit: limit, Ordered: ordered};
