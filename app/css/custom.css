@@ -107,6 +107,11 @@ img {
     z-index: 50;
 }
 
+.panel-category-list ul li a img {
+    margin: 0 auto;
+    max-height: 300px;
+}
+
 /**************************/
 .container .navbar-nav li.active a:hover  {background-color: #005592;}
 .container .navbar-nav li.active a:focus  {background-color: #005592;}
